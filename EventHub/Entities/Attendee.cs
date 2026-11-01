@@ -1,3 +1,7 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+
 namespace EventHub.Entities;
 /*
 Each attendee provides their full name, an email address, and a home address that
@@ -13,8 +17,8 @@ badge.
 An attendee can register for multiple events, and any given event will naturally
 have many attendees signed up for it.
  */
-using System.ComponentModel.DataAnnotations;
 
+[ Table ("EventOrganizers")]
 public class Attendee
 {
     public int Id { get; set; }
@@ -25,11 +29,11 @@ public class Attendee
 
     [Required]
     [EmailAddress]
-    [MaxLength(150)]
+    [MaxLength(200)]
     public string Email { get; set; } = null!;
 
     [Required]
-    [MaxLength(200)]
+    [MaxLength(150)]
     public string Street { get; set; } = null!;
 
     [Required]
@@ -42,8 +46,11 @@ public class Attendee
 
     [Required]
     [MaxLength(20)]
+    [Column("ZipCode")]
     public string PostalCode { get; set; } = null!;
-
+    
+    [NotMapped]
+    public string FullAddress => $"{Street}, {City}, {Country}, {PostalCode}";
     public Badge? Badge { get; set; }
 
     public ICollection<Registration> Registrations { get; set; }

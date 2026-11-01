@@ -17,7 +17,7 @@ public class EventHubDbContext : DbContext
         DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(
-            "Server=DESKTOP-EV6VD57\\MSSQLSERVER01;" +
+            "Server=.;" +
             "Database=EventHub;" +
             "Trusted_Connection=True;" +
             "TrustServerCertificate=True;");
@@ -25,6 +25,8 @@ public class EventHubDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+        
         modelBuilder.ApplyConfiguration(
             new ProfilePageConfiguration());
 
@@ -34,10 +36,33 @@ public class EventHubDbContext : DbContext
         modelBuilder.ApplyConfiguration(
             new EventConfiguration());
 
-        modelBuilder.ApplyConfiguration(
-            new RegistrationConfiguration());
+        // modelBuilder.ApplyConfiguration(
+        //     new RegistrationConfiguration());
+        modelBuilder.Entity<Registration>(entity =>
+        {
+            entity.HasKey(r => new
+            {
+                r.AttendeeId,
+                r.EventId
+            });
 
-        base.OnModelCreating(modelBuilder);
+            entity.Property(r => r.Note)
+                .HasMaxLength(500)
+                .IsRequired(false);
+
+            entity.Property(r => r.RegisteredAt)
+                .IsRequired();
+
+            entity.HasOne(r => r.Attendee)
+                .WithMany(a => a.Registrations)
+                .HasForeignKey(r => r.AttendeeId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(r => r.Event)
+                .WithMany(e => e.Registrations)
+                .HasForeignKey(r => r.EventId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
     }
 
     public override int SaveChanges()

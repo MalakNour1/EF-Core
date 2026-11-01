@@ -13,13 +13,12 @@ public class Organizer
     public int Id { get; set; }
 
     [Required]
-    [MaxLength(150)]
+    [MaxLength(100)]
     public string Name { get; set; } = null!;
 
     [MaxLength(150)]
     public string? CompanyName { get; set; }
 
-    [Required]
     [MaxLength(50)]
     public string Status { get; set; } = null!;
 
