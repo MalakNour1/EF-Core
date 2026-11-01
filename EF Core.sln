@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOOKSTORE", "BOOKSTORE\BOOKSTORE.csproj", "{CA176975-3185-4907-BAF6-7AD47B5E825A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHub", "EventHub\EventHub.csproj", "{F49F2955-E033-4963-B6D0-182073140CFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{CA176975-3185-4907-BAF6-7AD47B5E825A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA176975-3185-4907-BAF6-7AD47B5E825A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA176975-3185-4907-BAF6-7AD47B5E825A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F49F2955-E033-4963-B6D0-182073140CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F49F2955-E033-4963-B6D0-182073140CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F49F2955-E033-4963-B6D0-182073140CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F49F2955-E033-4963-B6D0-182073140CFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
